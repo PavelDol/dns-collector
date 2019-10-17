@@ -251,7 +251,7 @@ write_packet(FILE *f, uint32_t fields, int separator, dns_packet_t *pkt)
         uint8_t *opt = knot_edns_get_option(req_opt_rr, code); \
         if (opt) { for (int i = 0; i < knot_edns_opt_get_length(opt); i++) { \
             if (i > 0) WRITE( (separator == ',') ? "\\," : "," ); \
-            WRITE("%d", (int)((opt + 2 * sizeof(uint16_t) + i)[i])); \
+            WRITE("%d", (int)(*(opt + 2 * sizeof(uint16_t) + i))); \
         } } else { WRITENULL; } \
     } else { WRITENULL; }
 

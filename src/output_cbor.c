@@ -229,7 +229,7 @@ write_packet(FILE *f, uint32_t fields, dns_packet_t *pkt)
             CborEncoder elist; \
             CERR(cbor_encoder_create_array(&eitem, &elist, len)); \
             for (int i = 0; i < knot_edns_opt_get_length(opt); i++) { \
-                CERR(cbor_encode_int(&elist, ((opt + 2 * sizeof(uint16_t) + i)[i]))); \
+                CERR(cbor_encode_int(&elist, (*(opt + 2 * sizeof(uint16_t) + i)))); \
             } \
             CERR(cbor_encoder_close_container_checked(&eitem, &elist)); \
     COND_OPT_RR_END
