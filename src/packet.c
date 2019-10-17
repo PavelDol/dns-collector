@@ -155,8 +155,8 @@ dns_packet_create_from_libtrace(libtrace_packet_t *tp, struct dns_packet **pktp)
         return r;
     }
 
-    // Fully parse and check requests
-    if (DNS_PACKET_IS_REQUEST(pkt)) {
+    // Fully parse and check both requests and responses
+    if (DNS_PACKET_IS_REQUEST(pkt) || DNS_PACKET_IS_RESPONSE(pkt)) {
         r = knot_pkt_parse(pkt->knot_packet, 0);
         if (r != DNS_RET_OK)
         {
